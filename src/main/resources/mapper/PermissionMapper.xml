@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.zr.admin.dao.PermissionDao">
+
+    <!--查询资源-->
+    <select id = "getPermissionList"  resultType="com.zr.admin.bean.Permission" >
+
+--
+-- SELECT * from permission  p
+-- JOIN role r on p.id=r.id
+--
+--
+--   SELECT  id  rid  FROM  role  WHERE  id IN (
+--
+--   SELECT
+--   )
+--   (
+--
+--    SELECT
+--          id  uid
+--         FROM user where            username = #{userName}
+--   )
+
+
+    </select>
+    <!--&lt;!&ndash;查询列表  带分页&ndash;&gt;-->
+    <!--<select id = "getList" parameterType="java.util.Map" resultType="User" >-->
+        <!--SELECT-->
+            <!--*-->
+        <!--FROM user-->
+
+    <!--</select>-->
+
+
+
+
+</mapper>

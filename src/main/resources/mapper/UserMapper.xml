@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.zr.admin.dao.UserDao">
+    <resultMap type="com.zr.admin.bean.User" id="userMap">
+        <id property="id" column="uid"/>
+        <result property="userName" column="username"/>
+        <result property="passWord" column="password"/>
+        <result property="realName" column="realname"/>
+        <collection property="roleList" ofType="com.zr.admin.bean.Role">
+            <id property="id" column="rid"/>
+            <result property="name" column="rName"/>
+            <collection property="permissionList" ofType="com.zr.admin.bean.Permission">
+                <id property="id" column="pid"/>
+                <result property="name" column="pName"/>
+                <result property="menuUrl" column="menuUrl"/>
+            </collection>
+        </collection>
+    </resultMap>
+    <select id="getUser" parameterType="string" resultMap="userMap">
+     SELECT
+        u.id uid,u.username userName,u.`password` passWord,u.realname realName,u.address, u.dept,u.phone
+         ,ur.rid
+         ,r.`name` rName
+        from `user` u
+       left join user_role ur on ur.uid = u.id
+       left  join role r on r.id = ur.rid
+        WHERE username=#{username} and u.is_delete = 0
+    </select>
+
+
+    <select id = "getList" parameterType="java.util.Map" resultType="map" >
+       SELECT
+            u.id uid,u.username userName,u.`password` passWord,u.realname realName,u.address, u.dept,u.phone,
+            u.sex,
+
+          (
+          case
+            when u.sex =0 then '男'
+            else '女'
+            end
+          )   sex2,
+				r.`name` rName ,r.id rid
+        FROM user u
+        left JOIN user_role ur on ur.uid = u.id
+       left  JOIN role r on r.id = ur.rid
+       WHERE u.is_delete = 0
+    </select>
+    <select id="getAllUser" resultType="map">
+        SELECT  u.id,u.realname realName
+         from USER  u
+        WHERE u.is_delete = 0
+
+    </select>
+
+    <insert id="addUser" parameterType="java.util.Map" useGeneratedKeys="true"  keyProperty="id" >
+        INSERT INTO
+        user (
+                 username,    password,  realname,                  phone,               address,             dept,                  level,sex
+        )
+        VALUES (
+            #{userName}, #{passWord}, #{realName}, #{phone}, #{address}, #{dept}, #{level}, #{sex}
+        )
+    </insert>
+
+    <update id="updateUser" parameterType="java.util.Map" >
+        UPDATE  user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userName !=null" >                username  = #{userName}      ,      </if>
+            <if test="passWord !=null" >                password  = #{passWord}       ,     </if>
+            <if test="realName !=null" >                realname  = #{realName}        ,    </if>
+            <if test="phone !=null" >                phone  = #{phone}           , </if>
+            <if test="address !=null" >                address  = #{address}      ,      </if>
+            <if test="dept !=null" >                dept  = #{dept}           , </if>
+            <if test="level !=null" >                level  = #{level}        ,    </if>
+            <if test="level !=null" >                sex  = #{sex}        ,    </if>
+        </trim>
+        where id = #{id}
+
+
+    </update>
+
+    <delete id="delUserByid" parameterType="int" >
+        update user
+        set is_delete = 1
+        WHERE id = #{id}
+
+    </delete>
+
+    <select id="getRoleIdByUserId"  resultType="map">
+        SELECT  ur.rid from user_role ur
+        WHERE  ur.uid = #{id}
+    </select>
+
+
+
+</mapper>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zr.admin.dao.RoleDao">
+
+    <!--
+     <include refid="common_list"/>
+    -->
+
+    <sql id="common_list">
+        id, name
+    </sql>
+    <select id="getInfo" parameterType="Map" resultType="map">
+     SELECT
+           id,name,description
+        from  role r
+
+        WHERE r.is_delete = 0 and  r.id = #{id};
+    </select>
+
+
+    <select id="getList" parameterType="java.util.Map" resultType="map">
+        SELECT
+        r.id,
+          r.name,r.description
+--    ,p.`name`,p.menu_url
+        FROM role r
+--        JOIN role_permission rp on r.id = rp.rid
+--         join permission p on p.id = rp.pid
+      where r.is_delete =0
+
+    </select>
+    <!--
+     <insert id="insertByBatch" parameterType="java.util.List">
+            insert into attachment_table (name, logID,url)
+            values
+            <foreach collection="list" item="item" index="index" separator=",">
+                (#{item.name,jdbcType=VARCHAR}, #{item.logid,jdbcType=INTEGER},#{item.url,jdbcType=LONGVARCHAR})
+            </foreach>
+        </insert>
+    -->
+    <!--角色 授权 -->
+    <!-- 根据角色id 获取 菜单 -->
+    <select id="getListByRoleId" parameterType="Map" resultType="map">
+          SELECT p.`name` title ,p.menu_url href,r.`name` rName,p.parent_id pid,p.id id
+          from role r
+           JOIN  role_permission rp  on rp.rid = r.id
+          JOIN permission p on p.id =rp.pid
+          WHERE  rp.is_delete  =0 and  r.id =#{rid}
+
+    </select>
+    <update id="delByRoleId" parameterType="Map">
+       update role_permission rp
+       set rp.is_delete = 1
+        WHERE rp.rid = #{rId}
+    </update>
+    <insert id="insertRolePermission" parameterType="Map">
+        INSERT into role_permission(
+        rid,pid
+        )
+        VALUES
+            (#{ rid }, #{ pid } )
+    </insert>
+    <select id="getRoleByUserId" parameterType="String" resultType="com.zr.admin.bean.Role">
+         SELECT
+             r.id,r.`name`
+            from `user` u
+             left join user_role ur on ur.uid = u.id
+             left join role r on  r.id = ur.rid
+             WHERE    u.is_delete = 0  and    username = #{userName}
+
+    </select>
+    <insert id="insert" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO role
+          (
+                 name,description
+        )
+        VALUES (
+            #{name}, #{description}
+        )
+    </insert>
+
+    <insert id="insertUserRole" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user_role
+        (
+            uid ,rid
+        )
+        VALUES (
+        #{uid}, #{rid}
+        )
+    </insert>
+    <update id="update" parameterType="java.util.Map">
+        UPDATE role
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name !=null">name = #{name} ,</if>
+            <if test="description !=null">description = #{description} ,</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <update id="updateUserRole" parameterType="java.util.Map">
+        UPDATE  user_role
+        set rid = #{rid}
+        where uid = #{id}
+    </update>
+    <delete id="delById" parameterType="int">
+        update role
+        set is_delete = 1
+        WHERE id = #{id}
+
+    </delete>
+
+    <!-- getAllRole -->
+    <select id="getAllRole" resultType="map">
+
+        SELECT  r.name,r.id,r.description
+        from role r
+        WHERE  r.is_delete = 0
+     order by id
+    </select>
+
+    <!-- getAllPermission-->
+    <select id="getAllPermission" resultType="map">
+
+        SELECT  p.id id ,p.name,p.menu_url menuUrl ,p.parent_id pid
+        from permission p
+
+    </select>
+    <select id="getRoleIdByName" resultType="map">
+        SELECT r.id rid FROM role r
+        WHERE  r.name = #{name}
+    </select>
+
+</mapper>

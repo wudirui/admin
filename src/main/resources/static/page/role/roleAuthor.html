@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>文章列表--layui后台管理模板 2.0</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../../medias/css/public.css" media="all" />
+</head>
+<body class="childrenBody">
+<form class="layui-form" style="width:80%;">
+
+	<input id="roleId" type="text" class="layui-input userId"     placeholder="角色id">
+
+	 <!--  sss-->
+
+	<!--<div class="layui-form-item layui-form-text">-->
+		<!--            <label class="layui-form-label">-->
+		<!--                <span class="x-red">*</span>权限表-->
+		<!--            </label>-->
+		<!--            <div class="layui-input-block">-->
+		<!--                <table class="layui-table layui-input-block">-->
+		<!--                    <tbody>-->
+	<!--                <tr>-->
+		<!--                    <td>-->
+		<!--                        客户管理-->
+		<!--                       <input class="checkbox_v1" type="checkbox" name="checkbox_v1" value="客户管理" lay-filter="checkbox_v1">-->
+		<!--                    </td>-->
+		<!--                    <td>-->
+		<!--                        <div class="layui-input-block">-->
+		<!--                            <input name="checkbox1[]" type="checkbox" value="意向" class="checkbox1" lay-filter="checkbox1">意向-->
+		<!--                            <input name="checkbox1[]" type="checkbox" value="会员" class="checkbox1" lay-filter="checkbox1">会员-->
+		<!--                        </div>-->
+		<!--                    </td>-->
+		<!--                </tr>-->
+	<!--                <tr>-->
+		<!--                    <td>-->
+		<!--                        施工管理-->
+		<!--                        <input class="checkbox_v2" type="checkbox" name="checkbox_v2" value="施工管理" lay-filter="checkbox_v2">-->
+		<!--                    </td>-->
+		<!--                    <td>-->
+
+
+		<!--                        <div class="layui-input-block">-->
+		<!--                                <input type="checkbox" name="checkbox2[]" value="设计" class="checkbox2" lay-filter="checkbox2">设计-->
+		<!--                                <input type="checkbox" name="checkbox2[]" value="完工" class="checkbox2" lay-filter="checkbox2" >完工-->
+		<!--                                <input type="checkbox" name="checkbox2[]" value="业主" class="checkbox2" lay-filter="checkbox2">业主-->
+		<!--                        </div>-->
+		<!--                    </td>-->
+		<!--                </tr>-->
+	<!--                <tr>-->
+		<!--                    <td>-->
+		<!--                        系统设置-->
+		<!--                       <input class="checkbox_v3" type="checkbox" name="checkbox_v3" value="系统设置" lay-filter="checkbox_v3">-->
+		<!--                    </td>-->
+		<!--                    <td>-->
+		<!--                        <div class="layui-input-block">-->
+		<!--                                <input type="checkbox" name="checkbox3[]" value="个人资料" class="checkbox3" lay-filter="checkbox3" >个人-->
+		<!--                                <input type="checkbox" name="checkbox3[]" value="BOSS"  class="checkbox3" lay-filter="checkbox3" >BOSS-->
+		<!--                        </div>-->
+		<!--                    </td>-->
+		<!--                </tr>-->
+	<!--                    </tbody>-->
+		<!--                </table>-->
+		<!--            </div>-->
+		<!--        </div>-->
+
+	<!-- end-->
+
+	<!--2222222222222222-->
+	<div id="permission1" class="layui-form-item">
+	</div>
+	<div id="permission2" class="layui-form-item">
+	</div>
+	<div id="permission3" class="layui-form-item">
+	</div>
+	<div id="permission4" class="layui-form-item">
+	</div>
+	<!--222222222222-->
+	<div class="layui-form-item layui-row layui-col-xs12">
+		<div class="layui-input-block">
+			<button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="addUser">立即添加</button>
+			<button  type="reset" class="layui-btn layui-btn-sm layui-btn-primary">重置数据</button>
+			<!--<button id="cancel"  class="layui-btn layui-btn-sm layui-btn-primary"  lay-filter="cancel">返回</button>-->
+		</div>
+	</div>
+</form>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" src="roleAuthor.js"></script>
+</body>
+</html>

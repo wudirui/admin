@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.zr.admin.dao.SysLogDao">
+
+    <select id="getLogs" parameterType="string" resultType="map">
+         SELECT
+        sys_logs.id,
+        sys_logs.module,
+        sys_logs.type,
+            DATE_FORMAT(sys_logs.create_date,'%Y-%c-%d %H:%i:%s') createDate,
+
+        sys_logs.create_user createUser,
+        sys_logs.log_desc logDesc
+        FROM
+        sys_logs
+        order by createDate desc
+
+
+    </select>
+
+
+
+
+    <insert id="addlogs" parameterType="java.util.Map" useGeneratedKeys="true"  keyProperty="id" >
+       INSERT INTO sys_logs (module,type,create_date,create_user,log_desc)
+	VALUES( #{module},#{type},now(),#{createUser},#{logDesc}  )
+    </insert>
+
+
+
+    <delete id="del" parameterType="int" >
+      delete from sys_logs
+        WHERE id = #{id}
+
+    </delete>
+
+
+
+</mapper>
