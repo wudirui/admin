@@ -18,10 +18,11 @@ layui.use(['form','layer','table','laytpl'],function(){
         id : "userListTable",
         cols : [[
             {type: "checkbox", fixed:"left", width:50},
-            {field: 'name', title: '设备名称', minWidth:100, align:"center"},
-            {field: 'type', title: '设备型号', minWidth:100, align:"center"},
-            {field: 'leaveDate', title: '出厂日期', minWidth:100, align:"center"},
-            {field: 'realName', title: '设备联系人', minWidth:100, align:"center"},
+            {field: 'name', title: '语句', minWidth:100, align:"center"},
+            {field: 'type', title: '录音人性别', minWidth:100, align:"center"},
+            {field: 'leaveDate', title: '对应方言', minWidth:100, align:"center"},
+            {field: 'realName', title: '录音', minWidth:100, align:"center"},
+            {field: 'checkResult', title: '审核结果', minWidth:100, align:"center"},
             {title: '操作', minWidth:175, templet:'#userListBar',fixed:"right",align:"center"}
         ]]
     });
@@ -47,7 +48,7 @@ layui.use(['form','layer','table','laytpl'],function(){
         var index = layui.layer.open({
             title : "添加设备",
             type : 2,
-            content : "facilityAdd.html",
+            content : "corpusAdd.html",
             success : function(layero, index){
                 var body = layui.layer.getChildFrame('body', index);
                 if(edit){
@@ -134,6 +135,32 @@ layui.use(['form','layer','table','laytpl'],function(){
                     tableIns.reload();
                     layer.close(index);
                 })
+            });
+        }else if(layEvent==='check'){
+            layer.open({
+                title: '审核这条录音'
+                ,content: '合格请选择通过，不合格选择不通过'
+                ,btn: ['通过', '不通过', '取消']
+                ,yes: function(index, layero){
+                    alert("通过")
+                    //按钮【按钮一】的回调
+                    return true;
+                }
+                ,btn2: function(index, layero){
+                    //按钮【按钮二】的回调
+                    alert("不通过")
+                    //return false 开启该代码可禁止点击该按钮关闭
+                }
+                ,btn3: function(index, layero){
+                    //按钮【按钮三】的回调
+                    alert("取消")
+                    //return false 开启该代码可禁止点击该按钮关闭
+                }
+                ,cancel: function(){
+                    //右上角关闭回调
+
+                    //return false 开启该代码可禁止点击该按钮关闭
+                }
             });
         }
     });
