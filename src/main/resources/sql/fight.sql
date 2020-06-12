@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2020-06-12 16:33:52
+Date: 2020-06-12 17:39:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -62,7 +62,7 @@ CREATE TABLE `facility` (
   `uid` int(11) DEFAULT NULL COMMENT '用户id',
   `is_delete` int(2) DEFAULT '0' COMMENT '是否删除 0 假 1 真',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of facility
@@ -72,11 +72,30 @@ INSERT INTO `facility` VALUES ('22', 'ff', 'fff', '2019-03-23 15:16:53', '../../
 INSERT INTO `facility` VALUES ('23', 'ff', 'fff', '2019-03-23 15:16:53', null, '31', '0');
 INSERT INTO `facility` VALUES ('24', 'ff', 'fff', '2019-03-23 15:16:53', null, '-1', '0');
 INSERT INTO `facility` VALUES ('25', 'ff', 'fff', '2019-03-23 15:16:53', null, '31', '0');
-INSERT INTO `facility` VALUES ('26', 'ff', 'fff', '2019-03-23 15:16:53', null, '44', '1');
-INSERT INTO `facility` VALUES ('27', 'ff', 'fff', '2019-03-23 15:16:53', null, '44', '1');
-INSERT INTO `facility` VALUES ('28', 'ff', 'fff', '2019-03-23 15:16:53', null, '44', '1');
-INSERT INTO `facility` VALUES ('29', 'ff', 'fff', '2019-03-23 15:16:53', null, '44', '1');
-INSERT INTO `facility` VALUES ('30', '试试0', '121221', '2019-03-25 13:52:20', '../../../static/upload/1553493185336.png', '1', '1');
+INSERT INTO `facility` VALUES ('26', 'ff', 'fff', '2019-03-23 15:16:53', null, '44', '0');
+INSERT INTO `facility` VALUES ('27', 'ff', 'fff', '2019-03-23 15:16:53', null, '44', '0');
+INSERT INTO `facility` VALUES ('28', 'ff', 'fff', '2019-03-23 15:16:53', null, '44', '0');
+INSERT INTO `facility` VALUES ('29', 'ff', 'fff', '2019-03-23 15:16:53', null, '44', '0');
+INSERT INTO `facility` VALUES ('30', '试试0', '121221', '2019-03-25 13:52:20', '../../../static/upload/1553493185336.png', '1', '0');
+INSERT INTO `facility` VALUES ('31', null, null, null, null, null, '21');
+INSERT INTO `facility` VALUES ('32', null, null, null, null, null, '22');
+INSERT INTO `facility` VALUES ('33', null, null, null, null, null, '23');
+INSERT INTO `facility` VALUES ('34', null, null, null, null, null, '24');
+INSERT INTO `facility` VALUES ('35', null, null, null, null, null, '25');
+INSERT INTO `facility` VALUES ('36', null, null, null, null, null, '26');
+INSERT INTO `facility` VALUES ('37', null, null, null, null, null, '27');
+INSERT INTO `facility` VALUES ('38', null, null, null, null, null, '28');
+INSERT INTO `facility` VALUES ('39', null, null, null, null, null, '29');
+INSERT INTO `facility` VALUES ('40', null, null, null, null, null, '30');
+INSERT INTO `facility` VALUES ('60', '笔记本', 'msi  ge-60', '2019-03-23 14:12:38', '../../../static/upload/1553321568728.jpg', '1', '0');
+INSERT INTO `facility` VALUES ('61', 'ff', 'fff', '2019-03-23 15:16:53', '../../../static/upload/1553325410054.jpg', '44', '0');
+INSERT INTO `facility` VALUES ('62', 'ff', 'fff', '2019-03-23 15:16:53', '', '31', '0');
+INSERT INTO `facility` VALUES ('63', 'ff', 'fff', '2019-03-23 15:16:53', '', '-1', '0');
+INSERT INTO `facility` VALUES ('64', 'ff', 'fff', '2019-03-23 15:16:53', '', '31', '0');
+INSERT INTO `facility` VALUES ('65', 'ff', 'fff', '2019-03-23 15:16:53', '', '44', '0');
+INSERT INTO `facility` VALUES ('66', 'ff', 'fff', '2019-03-23 15:16:53', '', '44', '0');
+INSERT INTO `facility` VALUES ('67', 'ff', 'fff', '2019-03-23 15:16:53', '', '44', '0');
+INSERT INTO `facility` VALUES ('68', 'ff', 'fff', '2019-03-23 15:16:53', '', '44', '0');
 
 -- ----------------------------
 -- Table structure for permission
@@ -168,7 +187,7 @@ CREATE TABLE `sys_logs` (
   `create_user` varchar(255) DEFAULT NULL,
   `log_desc` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=609 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=610 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_logs
@@ -257,6 +276,7 @@ INSERT INTO `sys_logs` VALUES ('605', '用户模块', '登录', '2020-06-11 16:2
 INSERT INTO `sys_logs` VALUES ('606', '角色模块', '查询', '2020-06-11 16:58:20', '我的名字是超管', '获取角色分页列表');
 INSERT INTO `sys_logs` VALUES ('607', '用户模块', '查询', '2020-06-11 16:58:30', '我的名字是超管', '用户分页查询');
 INSERT INTO `sys_logs` VALUES ('608', '用户模块', '登录', '2020-06-12 15:58:38', '我的名字是超管', '用户登录');
+INSERT INTO `sys_logs` VALUES ('609', '用户模块', '登录', '2020-06-12 17:30:22', '我的名字是超管', '用户登录');
 
 -- ----------------------------
 -- Table structure for user
