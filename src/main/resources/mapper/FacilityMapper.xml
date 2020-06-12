@@ -29,7 +29,6 @@
         LEFT join user u on u.id = f.uid
         WHERE  f.is_delete = 0
 
-
     </select>
 
     <insert id="insert" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
