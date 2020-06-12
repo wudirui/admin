@@ -10,10 +10,44 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2020-06-11 18:57:23
+Date: 2020-06-12 16:33:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for content
+-- ----------------------------
+DROP TABLE IF EXISTS `content`;
+CREATE TABLE `content` (
+  `id` int(11) NOT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of content
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for corpus
+-- ----------------------------
+DROP TABLE IF EXISTS `corpus`;
+CREATE TABLE `corpus` (
+  `id` int(11) NOT NULL,
+  `content_id` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `sex` int(11) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `dialect` varchar(255) DEFAULT NULL,
+  `audio` longtext,
+  `status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of corpus
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for facility
@@ -105,7 +139,7 @@ CREATE TABLE `role_permission` (
   `pid` int(11) DEFAULT NULL,
   `is_delete` int(2) DEFAULT '0' COMMENT '是否删除  0  否',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of role_permission
@@ -134,7 +168,7 @@ CREATE TABLE `sys_logs` (
   `create_user` varchar(255) DEFAULT NULL,
   `log_desc` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=608 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=609 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_logs
@@ -222,6 +256,7 @@ INSERT INTO `sys_logs` VALUES ('604', '用户模块', '登录', '2020-06-11 16:2
 INSERT INTO `sys_logs` VALUES ('605', '用户模块', '登录', '2020-06-11 16:28:36', '我的名字是超管', '用户登录');
 INSERT INTO `sys_logs` VALUES ('606', '角色模块', '查询', '2020-06-11 16:58:20', '我的名字是超管', '获取角色分页列表');
 INSERT INTO `sys_logs` VALUES ('607', '用户模块', '查询', '2020-06-11 16:58:30', '我的名字是超管', '用户分页查询');
+INSERT INTO `sys_logs` VALUES ('608', '用户模块', '登录', '2020-06-12 15:58:38', '我的名字是超管', '用户登录');
 
 -- ----------------------------
 -- Table structure for user

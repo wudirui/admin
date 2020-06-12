@@ -19,10 +19,11 @@ layui.use(['form','layer','table','laytpl'],function(){
         cols : [[
             {type: "checkbox", fixed:"left", width:50},
             {field: 'name', title: '语句', minWidth:100, align:"center"},
-            {field: 'type', title: '录音人性别', minWidth:100, align:"center"},
-            {field: 'leaveDate', title: '对应方言', minWidth:100, align:"center"},
-            {field: 'realName', title: '录音', minWidth:100, align:"center"},
-            {field: 'checkResult', title: '审核结果', minWidth:100, align:"center"},
+            {field: 'name', title: '录音人姓名', minWidth:50, align:"center"},
+            {field: 'type', title: '录音人性别', minWidth:50, align:"center"},
+            {field: 'leaveDate', title: '对应方言', minWidth:50, align:"center"},
+            {field: 'realName', title: '录音', minWidth:50, align:"center"},
+            {field: 'checkResult', title: '审核结果', minWidth:50, align:"center"},
             {title: '操作', minWidth:175, templet:'#userListBar',fixed:"right",align:"center"}
         ]]
     });
