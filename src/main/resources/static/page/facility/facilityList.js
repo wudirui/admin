@@ -47,7 +47,7 @@ layui.use(['form','layer','table','laytpl'],function(){
         var index = layui.layer.open({
             title : "添加设备",
             type : 2,
-            content : "corpusAdd.html",
+            content : "sentenceAdd.html",
             success : function(layero, index){
                 var body = layui.layer.getChildFrame('body', index);
                 if(edit){

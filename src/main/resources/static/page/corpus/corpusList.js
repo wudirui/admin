@@ -1,4 +1,4 @@
-layui.use(['form','layer','table','laytpl'],function(){
+layui.use(['form', 'layer', 'table', 'laytpl'], function () {
     var form = layui.form,
         layer = parent.layer === undefined ? layui.layer : top.layer,
         $ = layui.jquery,
@@ -7,52 +7,74 @@ layui.use(['form','layer','table','laytpl'],function(){
 
     //用户列表
     var tableIns = table.render({
-        elem: '#userList',
-      //  url : '../../json/userList.json',
-        url : '../../../facility/getlist',
-        cellMinWidth : 95,
-        page : true,
-        height : "full-125",
-        limits : [10,15,20,25],
-        limit : 10,
-        id : "userListTable",
-        cols : [[
-            {type: "checkbox", fixed:"left", width:50},
-            {field: 'name', title: '语句', minWidth:100, align:"center"},
-            {field: 'name', title: '录音人姓名', minWidth:50, align:"center"},
-            {field: 'type', title: '录音人性别', minWidth:50, align:"center"},
-            {field: 'leaveDate', title: '对应方言', minWidth:50, align:"center"},
-            {field: 'realName', title: '录音', minWidth:50, align:"center"},
-            {field: 'checkResult', title: '审核结果', minWidth:50, align:"center"},
-            {title: '操作', minWidth:175, templet:'#userListBar',fixed:"right",align:"center"}
-        ]]
-    });
-
-    //搜索【此功能需要后台配合，所以暂时没有动态效果演示】
-    $(".search_btn").on("click",function(){
-        if($(".searchVal").val() != ''){
-            table.reload("newsListTable",{
-                page: {
-                    curr: 1 //重新从第 1 页开始
-                },
-                where: {
-                    key: $(".searchVal").val()  //搜索的关键字
+        elem: '#corpusList',
+        //  url : '../../json/userList.json',
+        url: '../../../corpus/getlist',
+        cellMinWidth: 95,
+        page: true,
+        height: "full-125",
+        limits: [5, 10, 15, 20, 25],
+        limit: 10,
+        id: "corpusListTable",
+        cols: [[
+            {type: "checkbox", fixed: "left", width: 50},
+            {field: 'sentence', title: '语句', minWidth: 100, align: "center"},
+            {field: 'recorder_name', title: '录音人姓名', minWidth: 50, align: "center"},
+            {field: 'sex', title: '录音人性别', minWidth: 50, align: "center"},
+            {field: 'dialect', title: '对应方言', minWidth: 50, align: "center"},
+            {field: 'audio', title: '录音', minWidth: 50, align: "center"},
+            {field: 'status', title: '审核结果', minWidth: 50, align: "center"},
+            {field: 'create_date', title: '录制日期', minWidth: 50, align: "center"},
+            {title: '操作', minWidth: 175, templet: '#corpusListBar', fixed: "right", align: "center"}
+        ]],
+        done: function (res, curr, count) {
+            $("[data-field='sex']").children().each(function () {
+                if ($(this).text() == '1') {
+                    $(this).text("女")
                 }
-            })
-        }else{
-            layer.msg("请输入搜索的内容");
+                if ($(this).text() == '0') {
+                    $(this).text("男")
+                }
+
+            });
+            $("[data-field='status']").children().each(function () {
+                if ($(this).text() == '1') {
+                    $(this).text("通过")
+                }else if($(this).text() == '2') {
+                    $(this).text("未通过")
+                }else {
+                    $(this).text("未审核")
+                }
+
+            });
         }
     });
 
+    form.on('submit(corpusSearch)', function (data) {
+        //alert(data.field);
+        table.reload("corpusListTable", {
+            page: {
+                curr: 1 //重新从第 1 页开始
+            },
+            where: {
+                sentence: data.field['sentence'],
+                recorderName: data.field['recorderName'],
+                dialect: data.field['dialect'],
+                sex: data.field['sex'],
+                status: data.field['status']
+            }
+        })
+    });
+
     //添加
-    function addUser(edit){
+    function addUser(edit) {
         var index = layui.layer.open({
-            title : "添加设备",
-            type : 2,
-            content : "corpusAdd.html",
-            success : function(layero, index){
+            title: "添加设备",
+            type: 2,
+            content: "sentenceAdd.html",
+            success: function (layero, index) {
                 var body = layui.layer.getChildFrame('body', index);
-                if(edit){
+                if (edit) {
                     body.find("#facilityName").val(edit.name);  //设备名称
                     body.find("#facilityType").val(edit.type);  //设备名称
                     body.find("#userFace").attr('src', edit.imgUrl); //图片
@@ -61,106 +83,106 @@ layui.use(['form','layer','table','laytpl'],function(){
                     body.find("#facilityId").val(edit.id);  //
                     form.render();
                 }
-                setTimeout(function(){
+                setTimeout(function () {
                     layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
                         tips: 3
                     });
-                },500)
+                }, 500)
             }
         })
         layui.layer.full(index);
-        window.sessionStorage.setItem("index",index);
+        window.sessionStorage.setItem("index", index);
         //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
-        $(window).on("resize",function(){
+        $(window).on("resize", function () {
             layui.layer.full(window.sessionStorage.getItem("index"));
         })
     }
-    $(".addNews_btn").click(function(){
+
+    $(".addNews_btn").click(function () {
         addUser();
     })
 
     //批量删除
-    $(".delAll_btn").click(function(){
-        var checkStatus = table.checkStatus('userListTable'),
-            data = checkStatus.data,
-            newsId = [];
-        if(data.length > 0) {
+    $(".delAll_btn").click(function () {
+        var checkStatus = table.checkStatus('corpusListTable'),
+            data = checkStatus.data
+        var ids="";
+        if (data.length > 0) {
             for (var i in data) {
-                newsId.push(data[i].newsId);
+                ids=ids+","+data[i].id
             }
-            layer.confirm('确定删除选中的设备？', {icon: 3, title: '提示信息'}, function (index) {
-                $.post("../../facility/del",{
-                    id : data.id  //将需要删除的newsId作为参数传入
-                },function(data){
+            console.log(ids)
+            layer.confirm('确定删除选中的数据？', {icon: 3, title: '提示信息'}, function (index) {
+                $.post("../../corpus/delAll", {
+                    ids: ids //将需要删除的newsId作为参数传入
+                }, function (data) {
                     tableIns.reload();
                     layer.close(index);
                 })
             })
-        }else{
+        } else {
             layer.msg("请选择需要删除的设备");
         }
     })
 
     //列表操作
-    table.on('tool(userList)', function(obj){
+    table.on('tool(corpusList)', function (obj) {
         var layEvent = obj.event,
             data = obj.data;
-
-        if(layEvent === 'edit'){ //编辑
-            addUser(data);
-        }else if(layEvent === 'usable'){ //启用禁用
+        if (layEvent === 'usable') { //启用禁用
             var _this = $(this),
                 usableText = "是否确定禁用此设备？",
                 btnText = "已禁用";
-            if(_this.text()=="已禁用"){
+            if (_this.text() == "已禁用") {
                 usableText = "是否确定启用此设备？",
-                btnText = "已启用";
+                    btnText = "已启用";
             }
-            layer.confirm(usableText,{
+            layer.confirm(usableText, {
                 icon: 3,
-                title:'系统提示',
-                cancel : function(index){
+                title: '系统提示',
+                cancel: function (index) {
                     layer.close(index);
                 }
-            },function(index){
+            }, function (index) {
                 _this.text(btnText);
                 layer.close(index);
-            },function(index){
+            }, function (index) {
                 layer.close(index);
             });
-        }else if(layEvent === 'del'){ //删除
-            layer.confirm('确定删除此设备？',{icon:3, title:'提示信息'},function(index){
-                $.post("../../facility/del",{
-                    id : data.id  //将需要删除的newsId作为参数传入
-                },function(data){
+        } else if (layEvent === 'del') { //删除
+            layer.confirm('确定删除此设备？', {icon: 3, title: '提示信息'}, function (index) {
+                $.post("../../corpus/del", {
+                    id: data.id  //将需要删除的newsId作为参数传入
+                }, function (data) {
                     tableIns.reload();
                     layer.close(index);
                 })
             });
-        }else if(layEvent==='check'){
+        } else if (layEvent === 'check') {
             layer.open({
                 title: '审核这条录音'
-                ,content: '合格请选择通过，不合格选择不通过'
-                ,btn: ['通过', '不通过', '取消']
-                ,yes: function(index, layero){
-                    alert("通过")
-                    //按钮【按钮一】的回调
-                    return true;
+                , content: '合格请选择通过，不合格选择不通过'
+                , btn: ['通过', '不通过', '取消']
+                , btn1: function (index, layero) {
+                    $.post("../../corpus/check", {
+                        id: data.id,
+                        status: 1
+                    }, function (data) {
+                        tableIns.reload();
+                        layer.close(index);
+                    })
+                    parent.layer.close(index);
                 }
-                ,btn2: function(index, layero){
-                    //按钮【按钮二】的回调
-                    alert("不通过")
-                    //return false 开启该代码可禁止点击该按钮关闭
+                , btn2: function (index, layero) {
+                    $.post("../../corpus/check", {
+                        id: data.id,
+                        status: 2
+                    }, function (data) {
+                        tableIns.reload();
+                        layer.close(index);
+                    })
                 }
-                ,btn3: function(index, layero){
-                    //按钮【按钮三】的回调
-                    alert("取消")
-                    //return false 开启该代码可禁止点击该按钮关闭
-                }
-                ,cancel: function(){
-                    //右上角关闭回调
-
-                    //return false 开启该代码可禁止点击该按钮关闭
+                , cancel: function () {
                 }
             });
         }

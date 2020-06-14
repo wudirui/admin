@@ -13,82 +13,80 @@
     <link rel="stylesheet" href="../../medias/css/public.css" media="all"/>
 </head>
 <body class="childrenBody">
-<form class="layui-form">
-    <blockquote class="layui-elem-quote quoteBox">
-        <form class="layui-form">
-            <div class="layui-inline">
-                <label class="layui-form-label">语句：</label>
-                <div class="layui-input-inline">
-                    <input type="text" class="layui-input searchVal" placeholder="请输入搜索的内容"/>
-                </div>
+
+<blockquote class="layui-elem-quote quoteBox">
+<!--    <div class="layui-inline">-->
+<!--        <a class="layui-btn layui-btn-normal addNews_btn">添加语料</a>-->
+<!--    </div>-->
+    <div class="layui-inline">
+        <a class="layui-btn layui-btn-danger layui-btn-normal delAll_btn">批量删除</a>
+    </div>
+</blockquote>
+
+<blockquote class="layui-elem-quote quoteBox">
+    <form class="layui-form">
+        <div class="layui-inline">
+            <label class="layui-form-label">语句：</label>
+            <div class="layui-input-inline">
+                <input name="sentence" type="text" class="layui-input searchVal" placeholder="请输入搜索的内容"/>
             </div>
+        </div>
 
-            <div class="layui-inline">
-                <label class="layui-form-label">对应方言：</label>
-                <div class="layui-input-inline">
-					<select name="city" lay-verify="required">
-						<option value="">请选对应方言</option>
-						<option value="0">---</option>
-						<option value="1">---</option>
-					</select>
-                </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">姓名：</label>
+            <div class="layui-input-inline">
+                <input name="recorderName" type="text" class="layui-input searchVal" placeholder="请输入搜索的内容"/>
             </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">对应方言：</label>
-                <div class="layui-input-inline">
-                    <select name="city" lay-verify="required">
-                        <option value="">请选对应方言</option>
-                        <option value="0">---</option>
-                        <option value="1">---</option>
-                    </select>
-                </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">对应方言：</label>
+            <div class="layui-input-inline">
+                <select class="searchVal" name="dialect">
+                    <option value="">请选对应方言</option>
+                    <option value="0">---</option>
+                    <option value="1">---</option>
+                </select>
             </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">性别：</label>
-                <div class="layui-input-inline">
-					<select name="city" lay-verify="required">
-						<option value="">请选择性别</option>
-						<option value="0">男</option>
-						<option value="1">女</option>
-					</select>
-                </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">性别：</label>
+            <div class="layui-input-inline">
+                <select name="sex" class="searchVal">
+                    <option value="">请选择性别</option>
+                    <option value="0">男</option>
+                    <option value="1">女</option>
+                </select>
             </div>
+        </div>
 
 
-            <div class="layui-inline">
-                <label class="layui-form-label">审核结果：</label>
-                <div class="layui-input-inline">
-					<select name="city" lay-verify="required">
-						<option value="">请选审核结果</option>
-						<option value="0">通过</option>
-						<option value="1">未通过</option>
-					</select>
-                </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">审核结果：</label>
+            <div class="layui-input-inline">
+                <select name="status" class="searchVal">
+                    <option value="">请选审核结果</option>
+                    <option value="0">未审核</option>
+                    <option value="1">通过</option>
+                    <option value="2">未通过</option>
+                </select>
             </div>
-            <div class="layui-inline">
-                <a class="layui-btn search_btn" data-type="reload">搜索</a>
-            </div>
-        </form>
-		<div class="layui-inline">
-			<a class="layui-btn layui-btn-normal addNews_btn">添加语料</a>
-		</div>
-		<div class="layui-inline">
-			<a class="layui-btn layui-btn-danger layui-btn-normal delAll_btn">批量删除</a>
-		</div>
-    </blockquote>
+        </div>
+        <div class="layui-inline">
+            <a class="layui-btn" id="corpusSearch" lay-submit lay-filter="corpusSearch" data-type="reload">搜索</a>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </form>
+</blockquote>
 
+<table id="corpusList" lay-filter="corpusList"></table>
 
-
-    <table id="userList" lay-filter="userList"></table>
-
-    <!--操作-->
-    <script type="text/html" id="userListBar">
-        <a class="layui-btn layui-btn-xs" lay-event="check">审核</a>
-        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-        <!--<a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="usable">已启用</a>-->
-        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
-    </script>
-</form>
+<!--操作-->
+<script type="text/html" id="corpusListBar">
+    <a class="layui-btn layui-btn-xs" lay-event="check">审核</a>
+<!--    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
+    <!--<a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="usable">已启用</a>-->
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+</script>
 <script type="text/javascript" src="../../layui/layui.js"></script>
 <script type="text/javascript" src="./corpusList.js"></script>
 </body>

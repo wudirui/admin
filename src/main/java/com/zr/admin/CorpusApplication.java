@@ -8,12 +8,12 @@ import org.springframework.core.env.Environment;
 
 @SpringBootApplication
 @MapperScan({"com.zr.admin.dao"})
-public class DemoApplication {
+public class CorpusApplication {
 	@Autowired
 	private Environment environment;
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(CorpusApplication.class, args);
 	}
 
 

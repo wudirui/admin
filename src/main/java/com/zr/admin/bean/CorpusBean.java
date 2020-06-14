@@ -6,12 +6,14 @@ package com.zr.admin.bean;
 public class CorpusBean {
     private Integer id;
     private Integer contentId;
-    private String name;
-    private int sex;
+    private String sentence;
+    private String recorderName;
+    private String sex;
     private String address;
     private String dialect;
     private String audio;
-    boolean status;
+    private String status;
+    private String createDate;
 
     public Integer getId() {
         return id;
@@ -19,6 +21,15 @@ public class CorpusBean {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+
+    public String getSentence() {
+        return sentence;
+    }
+
+    public void setSentence(String sentence) {
+        this.sentence = sentence;
     }
 
     public Integer getContentId() {
@@ -30,21 +41,14 @@ public class CorpusBean {
     }
 
 
-    public String getName() {
-        return name;
+    public String getRecorderName() {
+        return recorderName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRecorderName(String recorderName) {
+        this.recorderName = recorderName;
     }
 
-    public int getSex() {
-        return sex;
-    }
-
-    public void setSex(int sex) {
-        this.sex = sex;
-    }
 
     public String getAddress() {
         return address;
@@ -70,11 +74,27 @@ public class CorpusBean {
         this.audio = audio;
     }
 
-    public boolean isStatus() {
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 }

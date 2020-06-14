@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zr.admin.dao.SentenceDao">
+    <select id="getList" parameterType="java.util.Map" resultType="map">
+        select * from sentence where del=0
+        <if test="sentence!=null">
+            and sentence like CONCAT('%',#{sentence},'%')
+        </if>
+    </select>
+
+    <update id="updateSentence" parameterType="java.util.Map">
+        update sentence set sentence=#{sentence} where id=#{id}
+    </update>
+
+    <insert id="addSentence" parameterType="String">
+        insert into sentence (sentence,del,create_time) values(#{sentence},0,#{createTime})
+    </insert>
+
+    <delete id="delById" parameterType="int">
+        update sentence
+        set del = 1
+        WHERE id = #{id}
+    </delete>
+</mapper>
