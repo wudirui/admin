@@ -34,4 +34,9 @@ public class CorpusServiceImpl implements CorpusService {
     public int delById(int id) {
         return corpusDao.delById(id);
     }
+
+    @Override
+    public List<Map<String, Object>> getOne(Map<String, Object> params) {
+        return corpusDao.getOne(params);
+    }
 }

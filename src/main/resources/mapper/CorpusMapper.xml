@@ -4,7 +4,7 @@
 
 <mapper namespace="com.zr.admin.dao.CorpusDao">
     <select id="getList" parameterType="java.util.Map" resultType="map">
-        select *,t2.sentence from corpus as t1 left join (select * from sentence) as t2  on t2.id=t1.sentence_id
+        select *,t2.sentence from corpus as t1 left join (select * from sentence) as t2 on t2.id=t1.sentence_id
         where t1.del=0 and t2.del=0
         <if test="sentence!=null">
             and t2.sentence like CONCAT('%',#{sentence},'%')
@@ -22,6 +22,22 @@
         <if test="status!=null">
             and status = #{status}
         </if>
+    </select>
+
+    <select id="getOne" parameterType="java.util.Map" resultType="map">
+        select * from sentence where id not in (select sentence_id from corpus where 1=1
+        <if test="address!=null">
+            and address = #{address}
+        </if>
+        <if test="recorderName!=null">
+            and recorder_name = #{recorderName}
+        </if>
+        <if test="dialect!=null">
+            and dialect = #{dialect}
+        </if>
+        <if test="sex!=null">
+            and sex = #{sex}
+        </if>)
     </select>
 
     <update id="check" parameterType="java.util.Map">

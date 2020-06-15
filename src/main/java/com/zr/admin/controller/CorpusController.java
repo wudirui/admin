@@ -78,9 +78,4 @@ public class CorpusController {
         }
         return i;
     }
-
-    @RequestMapping("receive")
-    public String receiveMsg(@RequestParam MultipartFile file){
-        return "ok";
-    }
 }

@@ -19,6 +19,10 @@ public class MyInterceptor implements HandlerInterceptor {
         System.out.println("preHandle被调用");
      //   Map map =(Map)httpServletRequest.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
         String paths = request.getServletPath();
+
+        if (paths.equals("/wch/receive")||paths.equals("/wch/send")){
+            return true;
+        }
         String urlString = request.getRequestURI();
         System.out.println(paths);
 
@@ -51,7 +55,6 @@ public class MyInterceptor implements HandlerInterceptor {
 
            return true;    //如果false，停止流程，api被拦截
         }else {
-
             response.sendRedirect("/login.html");
             return  false;
 

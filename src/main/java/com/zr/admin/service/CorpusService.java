@@ -11,4 +11,6 @@ public interface CorpusService {
     void check(Map<String, Object> map);
 
     int delById(int id);
+
+    List<Map<String, Object>> getOne(Map<String, Object> params);
 }
