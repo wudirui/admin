@@ -22,7 +22,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             {field: 'recorder_name', title: '录音人姓名', minWidth: 50, align: "center"},
             {field: 'sex', title: '录音人性别', minWidth: 50, align: "center"},
             {field: 'dialect', title: '对应方言', minWidth: 50, align: "center"},
-            {field: 'audio', title: '录音', minWidth: 50, align: "center"},
+            {field: 'audio', title: '录音', minWidth: 100, align: "center"},
             {field: 'status', title: '审核结果', minWidth: 50, align: "center"},
             {field: 'create_date', title: '录制日期', minWidth: 50, align: "center"},
             {title: '操作', minWidth: 175, templet: '#corpusListBar', fixed: "right", align: "center"}
@@ -40,12 +40,18 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             $("[data-field='status']").children().each(function () {
                 if ($(this).text() == '1') {
                     $(this).text("通过")
-                }else if($(this).text() == '2') {
+                } else if ($(this).text() == '2') {
                     $(this).text("未通过")
-                }else {
+                } else {
                     $(this).text("未审核")
                 }
 
+            });
+
+            $("[data-field='audio']").children().each(function () {
+                if ($(this).text() != "录音" && $(this).text()) {
+                    $(this).html("<audio style='height: 28px;width: 100px' controls='controls' src='" + $(this).text() + "' ></audio>");
+                }
             });
         }
     });
@@ -106,10 +112,10 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
     $(".delAll_btn").click(function () {
         var checkStatus = table.checkStatus('corpusListTable'),
             data = checkStatus.data
-        var ids="";
+        var ids = "";
         if (data.length > 0) {
             for (var i in data) {
-                ids=ids+","+data[i].id
+                ids = ids + "," + data[i].id
             }
             console.log(ids)
             layer.confirm('确定删除选中的数据？', {icon: 3, title: '提示信息'}, function (index) {

@@ -16,5 +16,4 @@ public class CorpusApplication {
 		SpringApplication.run(CorpusApplication.class, args);
 	}
 
-
 }
