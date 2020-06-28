@@ -25,7 +25,7 @@ public class MywebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(myInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/user/login","/login.html","/page/404.html"
+                .excludePathPatterns("/user/login","/wch/getSentence","/wch/sendAudio","/login.html","/page/404.html"
                         ,"/css/**","/images/**","/js/**","/layui/**","/page/*/*.js")
                 ;
 

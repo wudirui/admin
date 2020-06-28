@@ -9,7 +9,6 @@ public class Permission {
 
     private String menuUrl;
 
-
     public int getId() {
         return id;
     }
@@ -41,7 +40,6 @@ public class Permission {
     public void setDesc(String desc) {
         this.desc = desc;
     }
-
 
     public String getMenuUrl() {
         return menuUrl;
