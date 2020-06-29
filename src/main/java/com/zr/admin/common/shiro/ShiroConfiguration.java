@@ -1,4 +1,4 @@
-package com.zr.admin.shiro;
+package com.zr.admin.common.shiro;
 
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;

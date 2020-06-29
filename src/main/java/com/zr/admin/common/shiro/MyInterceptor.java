@@ -1,4 +1,4 @@
-package com.zr.admin;
+package com.zr.admin.common.shiro;
 
 import com.zr.admin.bean.User;
 import org.springframework.stereotype.Component;

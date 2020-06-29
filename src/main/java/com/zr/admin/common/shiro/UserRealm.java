@@ -1,4 +1,4 @@
-package com.zr.admin.shiro;
+package com.zr.admin.common.shiro;
 
 
 import com.zr.admin.bean.Permission;

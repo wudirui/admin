@@ -10,4 +10,6 @@ public interface CorpusDao {
 
     int delById(int id);
     List<Map<String, Object>> getOne(Map<String, Object> params);
+
+    void addCorpus(Map<String, String> map);
 }
