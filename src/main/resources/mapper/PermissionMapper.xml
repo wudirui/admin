@@ -5,7 +5,7 @@
 <mapper namespace = "com.zr.admin.dao.PermissionDao">
 
     <!--查询资源-->
-    <select id = "getPermissionList"  resultType="com.zr.admin.bean.Permission" >
+    <select id = "getPermissionList"  resultType="com.zr.admin.bean.PermissionBean" >
 
 --
 -- SELECT * from permission  p

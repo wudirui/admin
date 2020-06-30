@@ -1,6 +1,6 @@
 package com.zr.admin.service.impl;
 
-import com.zr.admin.bean.User;
+import com.zr.admin.bean.UserBean;
 import com.zr.admin.common.Common;
 import com.zr.admin.dao.UserDao;
 import com.zr.admin.service.UserService;
@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public User getUser(String userName) {
+    public UserBean getUser(String userName) {
         return userDao.getUser(userName);
     }
 
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public int addUser(Map<String, Object> map) {
         // 判断账号 是否已经注册
-        User re = userDao.getUser(map.get("userName").toString());
+        UserBean re = userDao.getUser(map.get("userName").toString());
         if( null != re ){
             return  -1;
         }

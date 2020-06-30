@@ -1,6 +1,6 @@
 package com.zr.admin.bean;
 
-public class Permission {
+public class PermissionBean {
 
     private int id;
     private String name;

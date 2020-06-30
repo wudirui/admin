@@ -62,7 +62,7 @@
         VALUES
             (#{ rid }, #{ pid } )
     </insert>
-    <select id="getRoleByUserId" parameterType="String" resultType="com.zr.admin.bean.Role">
+    <select id="getRoleByUserId" parameterType="String" resultType="com.zr.admin.bean.RoleBean">
          SELECT
              r.id,r.`name`
             from `user` u

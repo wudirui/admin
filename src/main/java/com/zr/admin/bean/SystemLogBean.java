@@ -3,7 +3,7 @@ package com.zr.admin.bean;
 import java.io.Serializable;
 import java.util.Date;
 
-public class SysLog implements Serializable {
+public class SystemLogBean implements Serializable {
 
     private int id;
     private String logTypeName;

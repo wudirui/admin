@@ -3,7 +3,7 @@ package com.zr.admin.bean;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Facility implements Serializable {
+public class FacilityBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

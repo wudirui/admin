@@ -1,7 +1,7 @@
 package com.zr.admin.common;
 
 
-import com.zr.admin.bean.User;
+import com.zr.admin.bean.UserBean;
 import com.zr.admin.service.SysLogService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -78,7 +78,7 @@ public class LoggerAspect {
         HttpServletRequest request = attributes.getRequest();
         HttpSession session = request.getSession();
         session.getAttribute("loginUser");
-        User user = (User)request.getSession().getAttribute("loginUser");
+        UserBean user = (UserBean)request.getSession().getAttribute("loginUser");
 
 
 

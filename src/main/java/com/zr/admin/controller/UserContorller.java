@@ -1,8 +1,8 @@
 package com.zr.admin.controller;
 
 
-import com.zr.admin.bean.Role;
-import com.zr.admin.bean.User;
+import com.zr.admin.bean.RoleBean;
+import com.zr.admin.bean.UserBean;
 import com.zr.admin.common.*;
 import com.zr.admin.service.RoleService;
 import com.zr.admin.service.UserService;
@@ -18,7 +18,6 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +38,7 @@ public class UserContorller {
     @RequestMapping("/login")
     @ResponseBody
     @LoggerManager(type = LogType.LOGIN,module = "用户模块",logDesc = "用户登录")
-    public Object login(User user, HttpServletRequest request , HttpServletResponse response){
+    public Object login(UserBean user, HttpServletRequest request , HttpServletResponse response){
         logger.info("log4j:______________________login");
 
         Result<Object> re = new Result<>("-1","登录失败");
@@ -68,13 +67,13 @@ public class UserContorller {
 
 
             //
-            User loginUser = userService.getUser( user.getUserName());
+            UserBean loginUser = userService.getUser( user.getUserName());
 
             if ( null != loginUser ) {
                 if ( user.getPassWord().equals(loginUser.getPassWord())){
                     HttpSession session = request.getSession();
                     session.setAttribute("loginUser",loginUser);
-                    Role role  = roleService.getRoleByUserId(loginUser.getUserName());
+                    RoleBean role  = roleService.getRoleByUserId(loginUser.getUserName());
                     // 根据角色id 获取资源 保存session
                    List<Map<String,Object>>  permissions  = roleService.getListByRoleId(role.getId());
                    List<String> pps = new ArrayList<>();

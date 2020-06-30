@@ -1,13 +1,13 @@
 package com.zr.admin.dao;
 
-import com.zr.admin.bean.Role;
+import com.zr.admin.bean.RoleBean;
 
 import java.util.List;
 import java.util.Map;
 
 public interface RoleDao {
 
-    Role getRoleByUserId(String userName);
+    RoleBean getRoleByUserId(String userName);
     // 添加角色
     int insert(Map<String,Object> map);
     // 给用户添加角色

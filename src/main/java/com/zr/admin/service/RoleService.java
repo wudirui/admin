@@ -1,13 +1,13 @@
 package com.zr.admin.service;
 
-import com.zr.admin.bean.Role;
+import com.zr.admin.bean.RoleBean;
 
 import java.util.List;
 import java.util.Map;
 
 public interface RoleService {
 
-    Role getRoleByUserId(String userName);
+    RoleBean getRoleByUserId(String userName);
     int insert(Map<String,Object> map);
     // 修改角色
     int update(Map<String,Object> map);

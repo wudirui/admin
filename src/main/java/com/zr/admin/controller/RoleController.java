@@ -1,7 +1,7 @@
 package com.zr.admin.controller;
 
 
-import com.zr.admin.bean.Role;
+import com.zr.admin.bean.RoleBean;
 import com.zr.admin.common.Common;
 import com.zr.admin.common.LogType;
 import com.zr.admin.common.LoggerManager;
@@ -94,7 +94,7 @@ public class RoleController {
     public Object getrolemenu(HttpServletRequest request) {
         logger.info("--------------获取菜单开始------------------");
         int id = 0;
-        Role r = (Role) request.getSession().getAttribute("role");
+        RoleBean r = (RoleBean) request.getSession().getAttribute("role");
         if (null == r) {
             return "error";
         }

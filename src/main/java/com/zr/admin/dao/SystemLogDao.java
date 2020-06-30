@@ -3,7 +3,7 @@ package com.zr.admin.dao;
 import java.util.List;
 import java.util.Map;
 
-public interface SysLogDao {
+public interface SystemLogDao {
 
     int addlogs(Map<String,Object> map);
 

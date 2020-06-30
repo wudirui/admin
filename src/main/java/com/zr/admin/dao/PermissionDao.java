@@ -1,13 +1,13 @@
 package com.zr.admin.dao;
 
-import com.zr.admin.bean.Permission;
+import com.zr.admin.bean.PermissionBean;
 
 import java.util.List;
 
 public interface PermissionDao {
 
 
-    List<Permission> getPermissionList(String userName);
+    List<PermissionBean> getPermissionList(String userName);
 
 
 }

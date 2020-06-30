@@ -2,18 +2,18 @@ package com.zr.admin.bean;
 
 import java.util.Set;
 
-public class Role {
+public class RoleBean {
 
     private  int id;
     private  String  name;
     private  String desc;
-    private Set<Permission> permissionList;
+    private Set<PermissionBean> permissionList;
 
-    public Set<Permission> getPermissionList() {
+    public Set<PermissionBean> getPermissionList() {
         return permissionList;
     }
 
-    public void setPermissionList(Set<Permission> permissionList) {
+    public void setPermissionList(Set<PermissionBean> permissionList) {
         this.permissionList = permissionList;
     }
 

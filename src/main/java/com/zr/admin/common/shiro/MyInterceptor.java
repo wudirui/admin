@@ -1,6 +1,6 @@
 package com.zr.admin.common.shiro;
 
-import com.zr.admin.bean.User;
+import com.zr.admin.bean.UserBean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,7 +31,7 @@ public class MyInterceptor implements HandlerInterceptor {
         }
         HttpSession session = request.getSession();
         //这里的User是登陆时放入session的
-        User user = (User) session.getAttribute("loginUser"); // 登录用户
+        UserBean user = (UserBean) session.getAttribute("loginUser"); // 登录用户
         List<String> list = (ArrayList) session.getAttribute("permission"); // 用户所有的资源
         // 截取 请求的资源最后 URL
         String endUrl =  urlString.substring(urlString.lastIndexOf("/")+1,urlString.length()) ;

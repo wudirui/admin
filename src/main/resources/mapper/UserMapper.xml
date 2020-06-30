@@ -3,15 +3,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "com.zr.admin.dao.UserDao">
-    <resultMap type="com.zr.admin.bean.User" id="userMap">
+    <resultMap type="com.zr.admin.bean.UserBean" id="userMap">
         <id property="id" column="uid"/>
         <result property="userName" column="username"/>
         <result property="passWord" column="password"/>
         <result property="realName" column="realname"/>
-        <collection property="roleList" ofType="com.zr.admin.bean.Role">
+        <collection property="roleList" ofType="com.zr.admin.bean.RoleBean">
             <id property="id" column="rid"/>
             <result property="name" column="rName"/>
-            <collection property="permissionList" ofType="com.zr.admin.bean.Permission">
+            <collection property="permissionList" ofType="com.zr.admin.bean.PermissionBean">
                 <id property="id" column="pid"/>
                 <result property="name" column="pName"/>
                 <result property="menuUrl" column="menuUrl"/>

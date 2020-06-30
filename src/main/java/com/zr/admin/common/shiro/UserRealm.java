@@ -1,9 +1,9 @@
 package com.zr.admin.common.shiro;
 
 
-import com.zr.admin.bean.Permission;
-import com.zr.admin.bean.Role;
-import com.zr.admin.bean.User;
+import com.zr.admin.bean.PermissionBean;
+import com.zr.admin.bean.RoleBean;
+import com.zr.admin.bean.UserBean;
 import com.zr.admin.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -37,16 +37,16 @@ public class UserRealm extends AuthorizingRealm {
         logger.info("---------------------------->授权认证：");
         SimpleAuthorizationInfo authorizationInfo=new SimpleAuthorizationInfo();
         String userName=(String) principals.getPrimaryPrincipal();
-        User user = userService.getUser(userName);
+        UserBean user = userService.getUser(userName);
 
-        Set<Role> roles =user.getRoleList();
+        Set<RoleBean> roles =user.getRoleList();
         Set<String> roleSet=new HashSet<>();
         Set<String>  pemissionSet=new HashSet<>();
 
-        for (Role r: roles
+        for (RoleBean r: roles
              ) {
             roleSet.add(r.getName());
-            for (Permission p :r.getPermissionList()
+            for (PermissionBean p :r.getPermissionList()
                  ) {
                 pemissionSet.add(p.getName());
             }
@@ -75,7 +75,7 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         logger.info("---------------------------->登陆验证:");
         String userName=(String)authenticationToken.getPrincipal();
-        User user = userService.getUser(userName);
+        UserBean user = userService.getUser(userName);
         if(user==null) {
             //用户不存在就抛出异常
             throw new UnknownAccountException();

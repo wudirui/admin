@@ -1,6 +1,6 @@
 package com.zr.admin.service.impl;
 
-import com.zr.admin.dao.SysLogDao;
+import com.zr.admin.dao.SystemLogDao;
 import com.zr.admin.service.SysLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.Map;
 public class SysLogServiceImpl implements SysLogService {
 
     @Autowired
-    private SysLogDao sysLogDao;
+    private SystemLogDao sysLogDao;
 
 
 

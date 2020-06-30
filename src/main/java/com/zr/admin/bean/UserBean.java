@@ -3,7 +3,7 @@ package com.zr.admin.bean;
 import java.io.Serializable;
 import java.util.Set;
 
-public class User implements Serializable {
+public class UserBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private int id;
@@ -73,11 +73,11 @@ public class User implements Serializable {
         this.level = level;
     }
 
-    public Set<Role> getRoleList() {
+    public Set<RoleBean> getRoleList() {
         return roleList;
     }
 
-    public void setRoleList(Set<Role> roleList) {
+    public void setRoleList(Set<RoleBean> roleList) {
         this.roleList = roleList;
     }
 
@@ -88,7 +88,7 @@ public class User implements Serializable {
     private String address;
     private String level;
 
-    private Set<Role> roleList;
+    private Set<RoleBean> roleList;
 
 
 

@@ -1,13 +1,13 @@
 package com.zr.admin.dao;
 
-import com.zr.admin.bean.User;
+import com.zr.admin.bean.UserBean;
 
 import java.util.List;
 import java.util.Map;
 
 public interface UserDao {
 
-    User getUser(String userName);
+    UserBean getUser(String userName);
 
     List<Map<String, Object>> getList(Map<String, Object> map);
 

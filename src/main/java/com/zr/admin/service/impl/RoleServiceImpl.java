@@ -1,6 +1,6 @@
 package com.zr.admin.service.impl;
 
-import com.zr.admin.bean.Role;
+import com.zr.admin.bean.RoleBean;
 import com.zr.admin.dao.RoleDao;
 import com.zr.admin.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class RoleServiceImpl implements RoleService {
     private RoleDao roleDao;
 
     @Override
-    public Role getRoleByUserId(String userName) {
+    public RoleBean getRoleByUserId(String userName) {
         return roleDao.getRoleByUserId(userName);
     }
 
