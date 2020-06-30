@@ -16,6 +16,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         limits: [5, 10, 15, 20, 25],
         limit: 10,
         id: "corpusListTable",
+        toolbar: '#toolbar',
         cols: [[
             {type: "checkbox", fixed: "left", width: 50},
             {field: 'sentence', title: '语句', minWidth: 100, align: "center"},
@@ -24,7 +25,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             {field: 'dialect', title: '对应方言', minWidth: 50, align: "center"},
             {field: 'audio', title: '录音', minWidth: 100, align: "center"},
             {field: 'status', title: '审核结果', minWidth: 50, align: "center"},
-            {field: 'create_date', title: '录制日期', minWidth: 50, align: "center"},
+            {field: 'create_time', title: '录制日期', minWidth: 50, align: "center"},
             {title: '操作', minWidth: 175, templet: '#corpusListBar', fixed: "right", align: "center"}
         ]],
         done: function (res, curr, count) {
@@ -72,41 +73,6 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         })
     });
 
-    //添加
-    function addUser(edit) {
-        var index = layui.layer.open({
-            title: "添加设备",
-            type: 2,
-            content: "sentenceAdd.html",
-            success: function (layero, index) {
-                var body = layui.layer.getChildFrame('body', index);
-                if (edit) {
-                    body.find("#facilityName").val(edit.name);  //设备名称
-                    body.find("#facilityType").val(edit.type);  //设备名称
-                    body.find("#userFace").attr('src', edit.imgUrl); //图片
-                    body.find("#leaveDate").val(edit.leaveDate);  //
-                    body.find("#userId").val(edit.uid);  //
-                    body.find("#facilityId").val(edit.id);  //
-                    form.render();
-                }
-                setTimeout(function () {
-                    layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
-                        tips: 3
-                    });
-                }, 500)
-            }
-        })
-        layui.layer.full(index);
-        window.sessionStorage.setItem("index", index);
-        //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
-        $(window).on("resize", function () {
-            layui.layer.full(window.sessionStorage.getItem("index"));
-        })
-    }
-
-    $(".addNews_btn").click(function () {
-        addUser();
-    })
 
     //批量删除
     $(".delAll_btn").click(function () {

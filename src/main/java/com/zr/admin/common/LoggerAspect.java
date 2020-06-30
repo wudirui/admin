@@ -2,7 +2,7 @@ package com.zr.admin.common;
 
 
 import com.zr.admin.bean.UserBean;
-import com.zr.admin.service.SysLogService;
+import com.zr.admin.service.SystemLogService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -33,7 +33,7 @@ public class LoggerAspect {
     private Long executeTime = 0L;
 
     @Autowired
-    private SysLogService sysLogService;
+    private SystemLogService sysLogService;
 
     @Pointcut(" @annotation(com.zr.admin.common.LoggerManager)")
     public void loggerManagerCut() {}

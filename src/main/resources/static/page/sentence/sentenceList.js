@@ -16,6 +16,7 @@ layui.use(['form','layer','table','laytpl'],function(){
         limits : [5,10,15,20,25],
         limit : 10,
         id : "sentenceListTable",
+        toolbar: '#toolbar',
         cols : [[
             {type: "checkbox", fixed:"left", width:50},
             {field: 'sentence', title: '语句', minWidth:100, align:"center"},

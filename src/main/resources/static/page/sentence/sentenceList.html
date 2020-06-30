@@ -15,15 +15,6 @@
 <body class="childrenBody">
 
 <blockquote class="layui-elem-quote quoteBox">
-    <div class="layui-inline">
-        <a class="layui-btn layui-btn-normal addSentence" id="addSentence">添加语料</a>
-    </div>
-    <div class="layui-inline">
-        <a class="layui-btn layui-btn-danger layui-btn-normal delAll_btn">批量删除</a>
-    </div>
-</blockquote>
-
-<blockquote class="layui-elem-quote quoteBox">
     <form class="layui-form">
         <div class="layui-inline">
             <label class="layui-form-label">语句：</label>
@@ -38,8 +29,14 @@
     </form>
 </blockquote>
 
-<table id="sentenceList" lay-filter="sentenceList"></table>
+<table id="sentenceList" class="layui-hide" lay-filter="sentenceList"></table>
 
+<script type="text/html" id="toolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm addSentence" id="addSentence">添加语料</button>
+        <button class="layui-btn layui-btn-danger layui-btn-sm delAll_btn">批量删除</button>
+    </div>
+</script>
 <!--操作-->
 <script type="text/html" id="sentenceListBar">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>

@@ -53,7 +53,7 @@
 
     <select id="getOne" parameterType="java.util.Map" resultType="map">
         select * from sentence where id not in (select sentence_id from corpus where address = #{region}
-        and recorder_name = #{name} and dialect = #{dialect} and sex = #{sex})
+        and recorder_name = #{name} and dialect = #{dialect} and sex = #{sex}) and del=0
     </select>
 
     <insert id="addCorpus" parameterType="java.util.Map">
