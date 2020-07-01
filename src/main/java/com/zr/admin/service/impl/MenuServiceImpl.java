@@ -22,4 +22,9 @@ public class MenuServiceImpl implements MenuService {
     public int delById(Integer id) {
         return menuDao.delById(id);
     }
+
+    @Override
+    public List<Map<Integer, String>> getMenus() {
+        return menuDao.getMenus();
+    }
 }

@@ -7,4 +7,6 @@ public interface MenuDao {
     List<Map<String, Object>> getList(Map<String, Object> params);
 
     int delById(Integer id);
+
+    List<Map<Integer, String>> getMenus();
 }

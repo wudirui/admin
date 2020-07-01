@@ -24,12 +24,12 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             {title: '操作', minWidth: 175, templet: '#listBar', fixed: "right", align: "center"}
         ]],
         done: function (res, curr, count) {
-            $("[data-field='sex']").children().each(function () {
+            $("[data-field='type']").children().each(function () {
                 if ($(this).text() == '1') {
-                    $(this).text("女")
+                    $(this).text("一级菜单")
                 }
-                if ($(this).text() == '0') {
-                    $(this).text("男")
+                if ($(this).text() == '2') {
+                    $(this).text("二级菜单")
                 }
 
             });
@@ -95,12 +95,15 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             type : 2,
             content : "menuEdit.html",
             success : function(layero, index){
-                var body = layui.layer.getChildFrame('body', index);
+                let body = layui.layer.getChildFrame('body', index);
+                $.post(baseUrl + "menu/getMenus",function (data) {//获取菜单信息
+
+                   alert(data)
+                })
                 body.find("#id").val(edit.id);
-                body.find("#name").val(edit.name);  //设备名称
-                body.find("#type").val(edit.type);  //设备名称
+                body.find("#name").val(edit.name);
+                body.find("#type").val(edit.type);
                 body.find("#parent_id").val(edit.parent_id);  //设备名称
-                //设备名称
                 form.render();
                 setTimeout(function(){
                     layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {

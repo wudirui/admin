@@ -14,4 +14,8 @@
         set del = 1
         WHERE id = #{id}
     </delete>
+
+    <select id="getMenus" resultType="map">
+        select id,name from permission where del=0 and type=1
+    </select>
 </mapper>

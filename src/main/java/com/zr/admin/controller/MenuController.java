@@ -5,10 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.zr.admin.common.PageUtils;
 import com.zr.admin.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Iterator;
 import java.util.List;
@@ -63,5 +60,11 @@ public class MenuController {
             }
         }
         return i;
+    }
+
+    @RequestMapping(value = "getMenus", method = RequestMethod.POST)
+    public Object getMenus() {
+        List<Map<Integer, String>> menus = menuService.getMenus();
+        return menus;
     }
 }

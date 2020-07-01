@@ -31,21 +31,34 @@
 	<div class="layui-form-item layui-row layui-col-xs12">
 		<label class="layui-form-label">菜单类型</label>
 		<div class="layui-input-block">
-			<input id="type" type="text" class="layui-input  " lay-verify="required" placeholder="请输入菜单类型">
+			<select id="type" name="type" lay-filter="aihao">
+				<option value=""></option>
+				<option value="1">一级菜单</option>
+				<option value="2">二级菜单</option>
+			</select>
 		</div>
 	</div>
 
 	<div class="layui-form-item layui-row layui-col-xs12">
 		<label class="layui-form-label">父菜单</label>
 		<div class="layui-input-block">
-			<input id="parent_id" type="text" class="layui-input  " lay-verify="required" placeholder="请输入父菜单">
+			<select id="parent_id" name="parent_id" lay-filter="aihao">
+				<option value=""></option>
+				<option value="0">写作</option>
+				<option value="1" selected="">阅读</option>
+				<option value="2">游戏</option>
+				<option value="3">音乐</option>
+				<option value="4">旅行</option>
+			</select>
 		</div>
 	</div>
 
 
+
+
 	<div class="layui-form-item layui-row layui-col-xs12">
 		<div class="layui-input-block">
-			<button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="editSentence">提交</button>
+			<button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="edit">提交</button>
 			<button type="reset" class="layui-btn layui-btn-sm layui-btn-primary">取消</button>
 		</div>
 	</div>

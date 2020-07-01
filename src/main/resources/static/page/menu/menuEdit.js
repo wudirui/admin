@@ -3,7 +3,7 @@ layui.use(['form', 'layer'], function () {
     $ = layui.jquery;
     var layer = parent.layer === undefined ? layui.layer : top.layer
 
-    form.on("submit(editSentence)", function (data) {
+    form.on("submit(edit)", function (data) {
         //弹出loading
         var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
 
