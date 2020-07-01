@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>设备中心-- 后台管理</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="stylesheet" href="../../layui/css/layui.css" media="all"/>
+        <link rel="stylesheet" href="../../medias/css/public.css" media="all"/>
+    </head>
+    <body class="childrenBody">
+        <blockquote class="layui-elem-quote quoteBox">
+            <form class="layui-form">
+                <div class="layui-inline">
+                    <label class="layui-form-label">菜单名称：</label>
+                    <div class="layui-input-inline">
+                        <input name="menuName" type="text" class="layui-input searchVal" placeholder="请输入搜索的内容"/>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <a class="layui-btn" id="menuSearch" lay-submit lay-filter="menuSearch" data-type="reload">搜索
+                    </a>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </form>
+        </blockquote>
+        <table id="tableList" lay-filter="tableList"></table>
+
+
+        <script type="text/html" id="tableToolbar">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-danger  layui-btn-sm delAll_btn">批量删除</button>
+            </div>
+        </script>
+        <!--操作-->
+        <script type="text/html" id="listBar">
+            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+        </script>
+        <script type="text/javascript" src="../../layui/layui.js"></script>
+        <script type="text/javascript" src="./menuList.js"></script>
+    </body>
+</html>
