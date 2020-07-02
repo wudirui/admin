@@ -1,7 +1,7 @@
 layui.use(['form', 'layer'], function () {
-    form = layui.form;
-    $ = layui.jquery;
-    var layer = parent.layer === undefined ? layui.layer : top.layer
+    let form = layui.form;
+    let $ = layui.jquery;
+    let layer = parent.layer === undefined ? layui.layer : top.layer;
 
     form.on("submit(edit)", function (data) {
         //弹出loading

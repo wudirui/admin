@@ -90,20 +90,16 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
 
     //编辑
     function edit(edit){
-        var index = layui.layer.open({
+        let index = layui.layer.open({
             title : "编辑菜单",
             type : 2,
             content : "menuEdit.html",
             success : function(layero, index){
                 let body = layui.layer.getChildFrame('body', index);
-                $.post(baseUrl + "menu/getMenus",function (data) {//获取菜单信息
-
-                   alert(data)
-                })
                 body.find("#id").val(edit.id);
                 body.find("#name").val(edit.name);
                 body.find("#type").val(edit.type);
-                body.find("#parent_id").val(edit.parent_id);  //设备名称
+                body.find("#parent_id").val(edit.parent_id);
                 form.render();
                 setTimeout(function(){
                     layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
@@ -122,7 +118,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
 
     //列表操作
     table.on('tool(tableList)', function (obj) {
-        const layEvent = obj.event, data = obj.data;
+        let layEvent = obj.event, data = obj.data;
         if (layEvent === 'del') { //删除
             layer.confirm('确定删除此选项？', {icon: 3, title: '提示信息'}, function (index) {
                 $.post(baseUrl + "menu/del", {
