@@ -9,4 +9,8 @@ public interface MenuDao {
     int delById(Integer id);
 
     List<Map<Integer, String>> getMenus();
+
+    void updateMenu(Map<String, Object> map);
+
+    void addMenu(Map<String, Object> map);
 }

@@ -27,4 +27,14 @@ public class MenuServiceImpl implements MenuService {
     public List<Map<Integer, String>> getMenus() {
         return menuDao.getMenus();
     }
+
+    @Override
+    public void updateMenu(Map<String, Object> map) {
+        menuDao.updateMenu(map);
+    }
+
+    @Override
+    public void addMenu(Map<String, Object> map) {
+        menuDao.addMenu(map);
+    }
 }

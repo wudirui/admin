@@ -22,11 +22,21 @@
                 </div>
             </div>
             <input id="roleId" type="text" class="layui-input userId" style="display: none" placeholder="角色id">
+
+            <input id="menuId" type="hidden" value="" name="menuId">
+            <input id="parentId" type="hidden" value="" name="parentId">
             <div class="layui-form-item layui-row layui-col-xs12">
                 <label class="layui-form-label">菜单名称</label>
                 <div class="layui-input-block">
                     <input id="name" type="text" class="layui-input userName" lay-verify="required"
                            placeholder="请输入菜单名称">
+                </div>
+            </div>
+            <div class="layui-form-item layui-row layui-col-xs12">
+                <label class="layui-form-label">菜单路径</label>
+                <div class="layui-input-block">
+                    <input id="menuUrl" type="text" class="layui-input userName" lay-verify="required"
+                           placeholder="请输入菜单路径">
                 </div>
             </div>
             <div class="layui-form-item layui-row layui-col-xs12">
@@ -36,6 +46,7 @@
                         <option value=""></option>
                         <option value="1">一级菜单</option>
                         <option value="2">二级菜单</option>
+                        <option value="3">三级菜单</option>
                     </select>
                 </div>
             </div>
@@ -43,7 +54,7 @@
             <div class="layui-form-item layui-row layui-col-xs12">
                 <label class="layui-form-label">父菜单</label>
                 <div class="layui-input-block">
-                    <select id="parentName" name="parent_id">
+                    <select id="parentName" name="parentName">
                         <option value=""></option>
                     </select>
                 </div>
@@ -52,8 +63,8 @@
 
             <div class="layui-form-item layui-row layui-col-xs12">
                 <div class="layui-input-block">
-                    <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="edit">提交</button>
-                    <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary">取消</button>
+                    <button class="layui-btn layui-btn-sm" lay-submit lay-filter="edit">提交</button>
+                    <button id="cancelId" class="layui-btn layui-btn-sm layui-btn-primary">返回</button>
                 </div>
             </div>
         </form>
@@ -65,11 +76,18 @@
                     baseUrl = '../../../';
                 $("#parentName").empty();
                 $.post(baseUrl + "menu/getMenus", function (data) {//获取菜单信息
+                    $("#parentName").append(new Option("顶级菜单", '0'));
                     for (let j = 0; j < data.length; j++) {
-                        $("#parentName").append(new Option(data[j].name,data[j].id));
+                        $("#parentName").append(new Option(data[j].name, data[j].id));
                     }
+                    let parentId = $("#parentId").val();
+                    $("#parentName option[value='" + parentId + "']").prop("selected", true);
                     form.render('select');
                 })
+                $("#cancelId").click(function () {
+                    let index = parent.layer.getFrameIndex(window.name); //获取当前窗口的name
+                    parent.layer.close(index);		//关闭窗口
+                });
             })
         </script>
         <script type="text/javascript" src="./menuEdit.js"></script>

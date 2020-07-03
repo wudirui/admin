@@ -2,8 +2,11 @@ package com.zr.admin.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zr.admin.common.LogType;
+import com.zr.admin.common.LoggerManager;
 import com.zr.admin.common.PageUtils;
 import com.zr.admin.service.MenuService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,6 +64,19 @@ public class MenuController {
         }
         return i;
     }
+
+    @PostMapping(value = "add")
+    @LoggerManager(type = LogType.INSERT, module = "菜单", logDesc = "菜单添加/编辑")
+    public Object add(@RequestParam Map<String, Object> map) {
+        String id = map.get("id").toString();
+        if (!StringUtils.isBlank(id)) { //  有id 就修改
+            menuService.updateMenu(map);
+        }else {
+            menuService.addMenu(map);
+        }
+        return "ok";
+    }
+
 
     @RequestMapping(value = "getMenus", method = RequestMethod.POST)
     public Object getMenus() {

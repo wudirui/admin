@@ -31,24 +31,8 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
                 if ($(this).text() == '2') {
                     $(this).text("二级菜单")
                 }
-
-            });
-            $("[data-field='status']").children().each(function () {
-                if ($(this).text() == '1') {
-                    $(this).text("通过")
-                } else if ($(this).text() == '2') {
-                    $(this).text("未通过")
-                } else {
-                    $(this).text("未审核")
-                }
-
             });
 
-            $("[data-field='audio']").children().each(function () {
-                if ($(this).text() != "录音" && $(this).text()) {
-                    $(this).html("<audio style='height: 28px;width: 100px' controls='controls' src='" + $(this).text() + "' ></audio>");
-                }
-            });
         }
     });
 
@@ -88,30 +72,46 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         }
     })
 
-    //编辑
-    function edit(edit){
+    //添加
+    $(".add_btn").click(function () {
         let index = layui.layer.open({
-            title : "编辑菜单",
-            type : 2,
-            content : "menuEdit.html",
-            success : function(layero, index){
+            title: "添加菜单",
+            type: 2,
+            content: "menuEdit.html",
+        })
+        layui.layer.full(index);
+        window.sessionStorage.setItem("index", index);
+        //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
+        $(window).on("resize", function () {
+            layui.layer.full(window.sessionStorage.getItem("index"));
+        })
+    });
+
+    //编辑
+    function edit(edit) {
+        let index = layui.layer.open({
+            title: "编辑菜单",
+            type: 2,
+            content: "menuEdit.html",
+            success: function (layero, index) {
                 let body = layui.layer.getChildFrame('body', index);
-                body.find("#id").val(edit.id);
+                body.find("#menuId").val(edit.id);
                 body.find("#name").val(edit.name);
                 body.find("#type").val(edit.type);
-                body.find("#parent_id").val(edit.parent_id);
+                body.find("#menuUrl").val(edit.menu_url);
+                body.find("#parentId").val(edit.parent_id);
                 form.render();
-                setTimeout(function(){
+                setTimeout(function () {
                     layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
                         tips: 3
                     });
-                },500)
+                }, 500)
             }
         })
         layui.layer.full(index);
-        window.sessionStorage.setItem("index",index);
+        window.sessionStorage.setItem("index", index);
         //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
-        $(window).on("resize",function(){
+        $(window).on("resize", function () {
             layui.layer.full(window.sessionStorage.getItem("index"));
         })
     }
@@ -131,6 +131,9 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         }
         if (layEvent === 'edit') { //编辑
             edit(data);
+        }
+        if(layEvent==='add'){
+            add();
         }
 
     });
