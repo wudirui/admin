@@ -22,6 +22,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             {field: 'sentence', title: '语句', minWidth: 100, align: "center"},
             {field: 'recorder_name', title: '录音人姓名', minWidth: 50, align: "center"},
             {field: 'sex', title: '录音人性别', minWidth: 50, align: "center"},
+            {field: 'age', title: '录音人年龄', minWidth: 30, align: "center"},
             {field: 'dialect', title: '对应方言', minWidth: 50, align: "center"},
             {field: 'audio', title: '录音', minWidth: 100, align: "center"},
             {field: 'status', title: '审核结果', minWidth: 50, align: "center"},
@@ -88,13 +89,15 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
                 $.post("../../corpus/delAll", {
                     ids: ids //将需要删除的newsId作为参数传入
                 }, function (data) {
-                    tableIns.reload();
+                    // tableIns.reload();
                     layer.close(index);
+                    window.location.reload()
                 })
             })
         } else {
-            layer.msg("请选择需要删除的设备");
+            layer.msg("请选择需要删除的语料");
         }
+
     })
 
     //列表操作

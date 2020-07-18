@@ -1,5 +1,6 @@
 package com.zr.admin.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zr.admin.dao.ContentDao;
 import com.zr.admin.dao.CorpusDao;
 import com.zr.admin.service.CorpusService;
@@ -36,12 +37,17 @@ public class CorpusServiceImpl implements CorpusService {
     }
 
     @Override
-    public List<Map<String, Object>> getOne(Map<String, Object> params) {
-        return corpusDao.getOne(params);
+    public List<Map<String, Object>> getSentence(Map<String, Object> params) {
+        return corpusDao.getSentence(params);
     }
 
     @Override
     public void addCorpus(Map<String, String> map) {
         corpusDao.addCorpus(map);
+    }
+
+    @Override
+    public Integer getAlreadyRecordSentenceCount(JSONObject params) {
+        return corpusDao.getAlreadyRecordSentenceCount(params);
     }
 }

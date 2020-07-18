@@ -107,8 +107,9 @@ layui.use(['form','layer','table','laytpl'],function(){
                 $.post("../../sentence/delAll", {
                     ids: ids //将需要删除的newsId作为参数传入
                 }, function (data) {
-                    tableIns.reload();
+                    //tableIns.reload();
                     layer.close(index);
+                    window.location.reload();
                 })
             })
         } else {

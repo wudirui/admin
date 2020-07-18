@@ -24,21 +24,21 @@
         </if>
     </select>
 
-<!--    <select id="getOne" parameterType="java.util.Map" resultType="map">-->
-<!--        select * from sentence where id not in (select sentence_id from corpus where 1=1-->
-<!--        <if test="address!=null">-->
-<!--            and address = #{address}-->
-<!--        </if>-->
-<!--        <if test="recorderName!=null">-->
-<!--            and recorder_name = #{recorderName}-->
-<!--        </if>-->
-<!--        <if test="dialect!=null">-->
-<!--            and dialect = #{dialect}-->
-<!--        </if>-->
-<!--        <if test="sex!=null">-->
-<!--            and sex = #{sex}-->
-<!--        </if>)-->
-<!--    </select>-->
+    <!--    <select id="getOne" parameterType="java.util.Map" resultType="map">-->
+    <!--        select * from sentence where id not in (select sentence_id from corpus where 1=1-->
+    <!--        <if test="address!=null">-->
+    <!--            and address = #{address}-->
+    <!--        </if>-->
+    <!--        <if test="recorderName!=null">-->
+    <!--            and recorder_name = #{recorderName}-->
+    <!--        </if>-->
+    <!--        <if test="dialect!=null">-->
+    <!--            and dialect = #{dialect}-->
+    <!--        </if>-->
+    <!--        <if test="sex!=null">-->
+    <!--            and sex = #{sex}-->
+    <!--        </if>)-->
+    <!--    </select>-->
 
     <update id="check" parameterType="java.util.Map">
         update corpus set status=#{status} where id=#{id}
@@ -51,14 +51,20 @@
     </delete>
 
 
-    <select id="getOne" parameterType="java.util.Map" resultType="map">
-        select * from sentence where id not in (select sentence_id from corpus where address = #{region}
-        and recorder_name = #{name} and dialect = #{dialect} and sex = #{sex}) and del=0
+    <select id="getSentence" parameterType="java.util.Map" resultType="map">
+        select * from sentence where sentence.id not in (select corpus.sentence_id from corpus where address = #{region}
+        and recorder_name = #{name} and dialect = #{dialect} and sex = #{sex} and age=#{age}) and del=0
+        ORDER BY RAND() LIMIT 0,1;
     </select>
 
+
+    <select id="getAlreadyRecordSentenceCount" parameterType="java.util.Map" resultType="Integer">
+        select count(sentence_id) from corpus where address = #{region}
+        and recorder_name = #{name} and dialect = #{dialect} and sex = #{sex} and age=#{age} and del=0
+    </select>
     <insert id="addCorpus" parameterType="java.util.Map">
-        insert into corpus (sentence_id,recorder_name,sex,address,audio,del,dialect,status,create_time) values
-        (#{sentenceId},#{name},
+        insert into corpus (sentence_id,recorder_name,age,sex,address,audio,del,dialect,status,create_time) values
+        (#{sentenceId},#{name},#{age},
         #{sex},#{address},#{audioStr},0,#{dialect},0,#{createTime})
     </insert>
 </mapper>

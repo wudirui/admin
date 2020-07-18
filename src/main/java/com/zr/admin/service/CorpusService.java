@@ -1,5 +1,7 @@
 package com.zr.admin.service;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +16,9 @@ public interface CorpusService {
 
 
 
-    List<Map<String, Object>> getOne(Map<String, Object> params);
+    List<Map<String, Object>> getSentence(Map<String, Object> params);
 
     void addCorpus(Map<String, String> map);
+
+    Integer getAlreadyRecordSentenceCount(JSONObject params);
 }
