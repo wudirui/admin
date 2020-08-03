@@ -93,16 +93,18 @@ public class SentenceController {
         JSONObject ret = new JSONObject();
         String msg = "success";
         String code = "0";
-        Map<Integer, Map<Integer, Object>> map = new HashMap<>();
         Date currentTime = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String createTime = formatter.format(currentTime);
-
         try {
-            map = readExcelContentz(file);
-            for (int i = 0; i < map.size(); i++) {
-                for (int j = 0; j < map.get(i).size(); j++) {
-                    sentenceService.addSentence((String) map.get(i).get(j),createTime);
+            List<Object> objects = readExcelContentz(file);
+            ret.put("data", objects);
+            for (Object object : objects) {
+                String sentence = String.valueOf(object);
+                logger.info("out the add:"+sentence);
+                if (sentence!=null&&!sentence.equals("")){
+                    logger.info("int the add:"+sentence);
+                    sentenceService.addSentence(sentence,createTime);
                 }
             }
         } catch (Exception e) {
@@ -110,7 +112,6 @@ public class SentenceController {
             msg = "error";
             code = "1";
         }
-        ret.put("data", map);
         ret.put("message", msg);
         ret.put("code", code);
         return ret.toString();

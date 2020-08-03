@@ -23,8 +23,9 @@ public class OfficeUtils {
 
     protected static final Logger logger = LoggerFactory.getLogger(OfficeUtils.class);
 
-    public static Map<Integer, Map<Integer, Object>> readExcelContentz(MultipartFile file) throws Exception {
+    public static List<Object> readExcelContentz(MultipartFile file) throws Exception {
         Map<Integer, Map<Integer, Object>> content = new HashMap<Integer, Map<Integer, Object>>();
+        List<Object> list = new ArrayList<>();
         // 上传文件名
         Workbook wb = getWb(file);
         if (wb == null) {
@@ -33,22 +34,22 @@ public class OfficeUtils {
         Sheet sheet = wb.getSheetAt(0);
         // 得到总行数
         int rowNum = sheet.getLastRowNum();
+
         Row row = sheet.getRow(0);
         int colNum = row.getPhysicalNumberOfCells();
         // 正文内容应该从第二行开始,第一行为表头的标题
         for (int i = 0; i <= rowNum; i++) {
             row = sheet.getRow(i);
+            if (row==null)
+                continue;
             int j = 0;
-            Map<Integer, Object> cellValue = new HashMap<Integer, Object>();
             while (j < colNum) {
                 Object obj = getCellFormatValue(row.getCell(j));
-                cellValue.put(j, obj);
+                list.add(obj);
                 j++;
             }
-            content.put(i, cellValue);
-
         }
-        return content;
+        return list;
     }
 
     //根据Cell类型设置数据

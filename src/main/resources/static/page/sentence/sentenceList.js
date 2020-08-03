@@ -13,7 +13,7 @@ layui.use(['form','layer','table','laytpl'],function(){
         cellMinWidth : 95,
         page : true,
         height : "full-125",
-        limits : [5,10,15,20,25],
+        limits : [5,10,15,20,25,500,1000],
         limit : 10,
         id : "sentenceListTable",
         toolbar: '#toolbar',
