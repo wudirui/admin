@@ -6,9 +6,6 @@ import java.util.Date;
 public class FacilityBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-
-
     private int id;
     private String name;
     private String type;
@@ -27,7 +24,6 @@ public class FacilityBean implements Serializable {
                 ", imgUrl='" + imgUrl + '\'' +
                 '}';
     }
-
     public int getId() {
         return id;
     }
@@ -75,4 +71,5 @@ public class FacilityBean implements Serializable {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
+    
 }

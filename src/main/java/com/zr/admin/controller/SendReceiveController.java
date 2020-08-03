@@ -1,7 +1,6 @@
 package com.zr.admin.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zr.admin.common.PageUtils;
 import com.zr.admin.service.CorpusService;
@@ -15,7 +14,10 @@ import sun.misc.BASE64Encoder;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/wch")

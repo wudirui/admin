@@ -20,9 +20,6 @@ public class MyInterceptor implements HandlerInterceptor {
      //   Map map =(Map)httpServletRequest.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
         String paths = request.getServletPath();
 
-        if (paths.equals("/wch/receive")||paths.equals("/wch/send")){
-            return true;
-        }
         String urlString = request.getRequestURI();
         System.out.println(paths);
 
