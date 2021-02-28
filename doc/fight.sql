@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost
+ Source Server         : hwy
  Source Server Type    : MySQL
- Source Server Version : 50730
- Source Host           : localhost:3306
+ Source Server Version : 50732
+ Source Host           : 124.70.78.60:3306
  Source Schema         : fight
 
  Target Server Type    : MySQL
- Target Server Version : 50730
+ Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 26/12/2020 18:32:12
+ Date: 28/02/2021 16:57:23
 */
 
 SET NAMES utf8mb4;
@@ -25,7 +25,7 @@ CREATE TABLE `content`  (
   `id` int(11) NOT NULL,
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of content
@@ -46,27 +46,28 @@ CREATE TABLE `corpus`  (
   `status` char(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `create_time` char(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `del` char(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `age` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of corpus
 -- ----------------------------
-INSERT INTO `corpus` VALUES (1, 46, '张瑞', '1', NULL, '1', '12', '1', NULL, '0');
-INSERT INTO `corpus` VALUES (2, 46, '2', NULL, NULL, NULL, '3qw', '2', NULL, '0');
-INSERT INTO `corpus` VALUES (3, 47, NULL, NULL, NULL, NULL, '12', '1', NULL, '0');
-INSERT INTO `corpus` VALUES (4, 4, NULL, NULL, NULL, NULL, NULL, '1', NULL, '0');
-INSERT INTO `corpus` VALUES (5, NULL, '5', NULL, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `corpus` VALUES (6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `corpus` VALUES (7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `corpus` VALUES (8, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, '0');
-INSERT INTO `corpus` VALUES (9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `corpus` VALUES (10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `corpus` VALUES (11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `corpus` VALUES (12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `corpus` VALUES (13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `corpus` VALUES (14, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `corpus` VALUES (15, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `corpus` VALUES (1, 46, '张瑞', '1', NULL, '1', '12', '1', NULL, '0', NULL);
+INSERT INTO `corpus` VALUES (2, 46, '2', NULL, NULL, NULL, '3qw', '2', NULL, '0', NULL);
+INSERT INTO `corpus` VALUES (3, 47, NULL, NULL, NULL, NULL, '12', '1', NULL, '0', NULL);
+INSERT INTO `corpus` VALUES (4, 4, NULL, NULL, NULL, NULL, NULL, '1', NULL, '0', NULL);
+INSERT INTO `corpus` VALUES (5, NULL, '5', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL);
+INSERT INTO `corpus` VALUES (6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL);
+INSERT INTO `corpus` VALUES (7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL);
+INSERT INTO `corpus` VALUES (8, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, '0', NULL);
+INSERT INTO `corpus` VALUES (9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL);
+INSERT INTO `corpus` VALUES (10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL);
+INSERT INTO `corpus` VALUES (11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL);
+INSERT INTO `corpus` VALUES (12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `corpus` VALUES (13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `corpus` VALUES (14, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `corpus` VALUES (15, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for facility
